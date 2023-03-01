@@ -1,25 +1,38 @@
+
 public class Product {
     private String name;
-    private double cost;
     private double volume;
-    protected String measureUnit;
+    private String measureUnit;
+    private double price;
 
-    public Product(String name, double cost, String measureUnit, double volume) {
+    /**
+     * Full constructor for class Product
+     * @param name
+     * @param volume
+     * @param measureUnit
+     * @param price
+     */
+    public Product(String name, double volume, String measureUnit, double price) {
         this.name = name;
-        this.cost = cost;
         this.volume = volume;
         this.measureUnit = measureUnit;
-    }
-    public Product(String name, double volume, double cost) {
-        this(name, volume, "ml", cost);
+        this.price = price;
     }
 
+    /** Constructor with default parameter "measureUnit" as liter */
+    public Product(String name, double volume, double price) {
+        this(name, volume, "l", price);
+    }
+
+    public void getProductInfo() {
+        String info = String.format("""
+                %s %.2f %s, price: %.2f""", this.getName(), this.getVolume(), this.getMeasureUnit(), this.getPrice());
+        System.out.println(info);
+    }
+
+    // region getters
     public String getName() {
         return name;
-    }
-
-    public double getCost() {
-        return cost;
     }
 
     public double getVolume() {
@@ -30,8 +43,8 @@ public class Product {
         return measureUnit;
     }
 
-    public void getProductInfo(){
-        String info = String.format("Имя: %s, Цена: %.2f, Объем: %.2f %s", this.getName(),this.getCost(),this.getVolume(), this.getMeasureUnit());
-        System.out.println(info);
+    public double getPrice() {
+        return price;
     }
+    // endregion getters
 }
